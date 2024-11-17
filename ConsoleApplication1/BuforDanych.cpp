@@ -1,0 +1,1 @@
+#include "BuforDanych.h"

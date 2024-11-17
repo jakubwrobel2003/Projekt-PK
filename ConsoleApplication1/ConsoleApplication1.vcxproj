@@ -128,7 +128,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="BuforDanych.cpp" />
+    <ClCompile Include="PID.cpp" />
+    <ClCompile Include="RegulatorARX.cpp" />
+    <ClCompile Include="Sprzezenie.cpp" />
+    <ClCompile Include="Sumator.cpp" />
+    <ClCompile Include="Sygnał.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="BuforDanych.h" />
+    <ClInclude Include="PID.h" />
+    <ClInclude Include="RegulatorARX.h" />
+    <ClInclude Include="Sprzezenie.h" />
+    <ClInclude Include="Sumator.h" />
+    <ClInclude Include="Sygnał.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
