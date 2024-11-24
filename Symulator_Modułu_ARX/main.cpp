@@ -1,5 +1,5 @@
 ﻿#include "BuforDanych.h"
-#include "Sygnał.h"
+#include "Sygnal.h"
 #include "App.h"
 #include "Sprzezenie.h"
 #include "PID.h"
@@ -7,7 +7,17 @@
 #include "RegulatorARX.h"
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello Worlddasdsadsadsa!\n";
+int main() {
+    App aplikacja;
+    RegulatorARX arx;
+
+    aplikacja.setARX(&arx);
+
+    //gluwna petla
+    aplikacja.symulacja();
+
+    // wupisz w przyszlosci zaspis do pliku
+    aplikacja.wypiszDane();
+
+    return 0;
 }

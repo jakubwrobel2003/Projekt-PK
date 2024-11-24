@@ -1,1 +1,0 @@
-#include "Sygna³.h"
