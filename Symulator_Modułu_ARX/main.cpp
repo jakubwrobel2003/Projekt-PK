@@ -18,6 +18,6 @@ int main() {
 
     // wupisz w przyszlosci zaspis do pliku
     aplikacja.wypiszDane();
-
+    aplikacja.zapisBazydanychdopliku();
     return 0;
 }

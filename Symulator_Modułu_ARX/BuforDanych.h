@@ -1,18 +1,27 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include <fstream>
 using namespace std;
 
 class BuforDanych {
+private:
+   
 public:
-    BuforDanych* nowszy = nullptr; // Wsk nowszy element kolejki
-    BuforDanych* starszy = nullptr; // Wsk starszy element kolejki
     double zaklucenie;
-    int ID; // Unikalny identyfikator
+    int ID; 
     static int licznikInstancji; //licznik ile jest danych
 
     
-    BuforDanych(BuforDanych* poprzedni);//konstruktor jak tworzy sie pierwszy to nullptr
+    BuforDanych();//konstruktor jak tworzy sie pierwszy to nullptr
     //setery
-    void setzaklucenie(double data);
+    void setZaklucenie(double data);
+    void setID(int id);
+
+    //Getter
+    double getZaklucenie() const;
+    int getID() const;
+
     void wypisztabele(); //wypisuje na ekran pojedyncza tablice
+    
 };
