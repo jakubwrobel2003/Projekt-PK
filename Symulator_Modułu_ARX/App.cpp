@@ -2,15 +2,14 @@
 #include <iostream>
 using namespace std;
 
-App::App() : head(nullptr), tail(nullptr), arx(nullptr) {}
+App::App()
+    : run(false),
+    data(0),
+    arx(nullptr) {};
 
 App::~App() {
-  
-    while (head) {
-        BuforDanych* next = head->nowszy;
-        delete head;
-        head = next;
-    }
+    this->data.clear();
+   
 }
 
 void App::clikrun() {
@@ -25,14 +24,13 @@ void App::symulacja() {
         std::cout << "Iteracja: " << i << "\n";
 
         
-        BuforDanych* nowaBaza = new BuforDanych(tail);
-        nowaBaza->setzaklucenie(arx->generateDisturbance());
+        BuforDanych* nowaBaza = new BuforDanych();
+        
+        nowaBaza->setZaklucenie(arx->generateDisturbance());
+        
+        data.push_back(nowaBaza);
 
-        if (!head) {
-            head = nowaBaza; //piewrszy element
-        }
-        tail = nowaBaza; 
-        std::cout << "Dodano element o ID: " << tail->ID << ", Zaklucenie: " << tail->zaklucenie << "\n";
+       // std::cout << "Dodano element o ID: " << nowaBaza->getID() << ", Zaklucenie: " << nowaBaza->getZaklucenie() << "\n";
 
         i++;
 
@@ -46,10 +44,31 @@ void App::symulacja() {
 }
 
 void App::wypiszDane() {
-    if (head) {
-        head->wypisztabele();
+    std::cout << "Rozmiar danych: " << data.size() << "\n";
+    std::cout << "ID\tZaklucenie\n";
+    std::cout << "------------------------\n";
+
+    for (const auto& elem : data) {
+        if (elem) {
+            elem->wypisztabele();
+        }
+        else {
+            std::cout << "B³¹d: pusty wskaŸnik w danych.\n";
+        }
     }
-    else {
-        std::cout << "Bufor jest pusty!\n";
-    }
+} void App::zapisBazydanychdopliku() {
+   ofstream file("example.txt", std::ios::out | std::ios::trunc);
+   if (file.is_open()) {
+    file<< "ID\tZaklucenie\n";
+       for (const auto& elem : data) {
+           if (elem) {
+               file << elem->getID() << "\t"<<elem->getZaklucenie()<<"\n";
+               file << elem->getb(0) << elem->getb(1);
+           }
+           else {
+               std::cout << "B³¹d: pusty wskaŸnik w danych.\n";
+           }
+   }
+   } file.close();
+
 }
