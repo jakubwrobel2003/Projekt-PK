@@ -63,7 +63,7 @@ void App::wypiszDane() {
        for (const auto& elem : data) {
            if (elem) {
                file << elem->getID() << "\t"<<elem->getZaklucenie()<<"\n";
-
+               file << elem->getb(0) << elem->getb(1);
            }
            else {
                std::cout << "B³¹d: pusty wskaŸnik w danych.\n";
