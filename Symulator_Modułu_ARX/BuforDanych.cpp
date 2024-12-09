@@ -5,8 +5,7 @@ using namespace std;
 int BuforDanych::licznikInstancji = 0;
 
 BuforDanych::BuforDanych() : ID(++licznikInstancji), zaklucenie(0) {
-    const std::string input = "2.34;2.60;3.14;5.0";
-    setB(input);
+    
 }
 
 
@@ -23,7 +22,15 @@ void BuforDanych::wypisztabele() {
             std::cout << ";"; 
         }
     }
-    std::cout << "" << std::endl; 
+    std::cout << "|";
+    for (size_t i = 0; i < a.size(); ++i) {
+        std::cout << a[i];
+        if (i < b.size() - 1) {
+            std::cout << ";";
+        }
+    }
+    std::cout << " | " << this->getY() << " | " << this->getU();
+    std::cout << "\n";
 }
 // Setery
 void BuforDanych::setZaklucenie(double data) {
@@ -73,7 +80,7 @@ void BuforDanych::setA(const string& data1) {
     while ((pos = data.find(";")) != string::npos) {
         string token = data.substr(0, pos);
         try {
-            b.push_back(std::stod(token));
+            a.push_back(std::stod(token));
         }
         catch (const std::invalid_argument&) {
             cerr << "Invalid input: " << token << std::endl;

@@ -15,6 +15,7 @@ private:
     double ster;
     double y;
     int i;
+    double u;
 public:
     
     BuforDanych();//konstruktor jak tworzy sie pierwszy to nullptr
@@ -24,14 +25,28 @@ public:
     void setB(const std::string& data);
     void setA(const std::string& data);
     void setSter(double data);
+    void setU(double data) {
+        u = data;
+    }
+    void setY(double data) {
+        y = data;
+    }
     //Getter
+    double getU() {
+        return u;
+    }
     double getZaklucenie() const;
     int getID() const;
     int getI()const;
     double getA(int e);
     double getb(int e);
     double getY();
-
+    vector<double> getvectorB() {
+        return b;
+    }
+    vector<double> getvectorA() {
+        return b;
+    }
     void wypisztabele(); //wypisuje na ekran pojedyncza tablice
     
 };

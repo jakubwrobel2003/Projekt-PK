@@ -132,7 +132,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BuforDanych.cpp" />
     <ClCompile Include="PID.cpp" />
-    <ClCompile Include="RegulatorARX.cpp" />
+    <ClCompile Include="ARX.cpp" />
     <ClCompile Include="Sprzezenie.cpp" />
     <ClCompile Include="Sumator.cpp" />
     <ClCompile Include="Sygnal.cpp" />
@@ -141,7 +141,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="BuforDanych.h" />
     <ClInclude Include="PID.h" />
-    <ClInclude Include="RegulatorARX.h" />
+    <ClInclude Include="ARX.h" />
     <ClInclude Include="Sprzezenie.h" />
     <ClInclude Include="Sumator.h" />
     <ClInclude Include="Sygnal.h" />

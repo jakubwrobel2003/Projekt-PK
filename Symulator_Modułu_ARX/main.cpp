@@ -4,12 +4,12 @@
 #include "Sprzezenie.h"
 #include "PID.h"
 #include "Sumator.h"
-#include "RegulatorARX.h"
+#include "ARX.h"
 #include <iostream>
 
 int main() {
     App aplikacja;
-    RegulatorARX arx;
+    ARX arx;
 
     aplikacja.setARX(&arx);
 
@@ -18,6 +18,8 @@ int main() {
 
     // wupisz w przyszlosci zaspis do pliku
     aplikacja.wypiszDane();
+ 
     aplikacja.zapisBazydanychdopliku();
-    return 0;
+
+    
 }
