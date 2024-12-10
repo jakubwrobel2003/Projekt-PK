@@ -11,7 +11,7 @@ double ARX::generateDisturbance() {
 
 double ARX::calcb(vector<BuforDanych*> data) {
     if (data.empty()) {
-        throw std::invalid_argument("Dane s¹ puste! Nie mo¿na wykonaæ obliczeñ.");
+        throw std::invalid_argument("Dane s¹ puste! Nie mozna wykonac obliczen.");
     }
     double sum = 0;
     int m_i = data.back()->getI();
@@ -29,7 +29,7 @@ double ARX::calcb(vector<BuforDanych*> data) {
 
 double ARX::calaA(vector<BuforDanych*> data) {
     if (data.empty()) {
-        throw std::invalid_argument("Dane s¹ puste! Nie mo¿na wykonaæ obliczeñ.");
+        throw std::invalid_argument("Dane sa puste! Nie mozna wykonaæ obliczen.");
     }
     double sum = 0;
     int m_i = data.back()->getI();

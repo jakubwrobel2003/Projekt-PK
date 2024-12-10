@@ -3,7 +3,6 @@
 #include "App.h"
 #include "Sprzezenie.h"
 #include "PID.h"
-#include "Sumator.h"
 #include "ARX.h"
 #include <iostream>
 
