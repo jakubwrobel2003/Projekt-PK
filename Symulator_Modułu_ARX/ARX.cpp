@@ -20,7 +20,7 @@ double ARX::calcb(vector<BuforDanych*> data) {
             sum += 0;
         }
         else {
-            cout << "TEST calcb\n" << data[data.size() - 1 - i]->getU() << data.back()->getb(i) << "\n";
+           // cout << "TEST calcb\n" << data[data.size() - 1 - i]->getU() << data.back()->getb(i) << "\n";
             sum -= data[data.size() - 1 - i]->getU() * data.back()->getb(i);
         }
     }
@@ -33,13 +33,13 @@ double ARX::calaA(vector<BuforDanych*> data) {
     }
     double sum = 0;
     int m_i = data.back()->getI();
-    cout << "TEST calca\n" << data.size();
+   // cout << "TEST calca\n" << data.size();
     for (int i = 1; i <= m_i; i++) {
         if (data.size() <= i) {
             sum += 0;
         }
         else {
-            cout << data[data.size() - 1 - i]->getY() << data.back()->getb(i);
+         //   cout << data[data.size() - 1 - i]->getY() << data.back()->getb(i);
             sum -= data[data.size() - 1 - i]->getY() * data.back()->getb(i);
         }
     }
@@ -47,6 +47,6 @@ double ARX::calaA(vector<BuforDanych*> data) {
 }
 
 double ARX::calcAll(std::vector<BuforDanych*> data) {
-    cout << "calcb" << calcb(data) << "\n";
+   
     return calcb(data) - calaA(data) + data.back()->getZaklucenie();
 }

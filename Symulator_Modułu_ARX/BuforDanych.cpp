@@ -147,13 +147,3 @@ double BuforDanych::getY() {
 
 
 
-void czyscplik(string plik) {
-    std::ofstream file(plik, std::ios::trunc); //kaswoanie danych
-    if (file.is_open()) {
-        std::cout << "Plik " << plik << " zosta³ wyczyszczony.\n";
-    }
-    else {
-        std::cerr << "B³¹d: Nie mo¿na otworzyæ pliku " << plik << " do czyszczenia.\n";
-    }
-    
-}

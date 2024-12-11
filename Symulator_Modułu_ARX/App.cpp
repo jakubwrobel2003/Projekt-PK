@@ -8,7 +8,7 @@ App::App()
     arx(nullptr) {};
 
 App::~App() {
-    this->data.clear();
+ 
 }
 
 void App::clikrun() {
@@ -21,7 +21,7 @@ void App::symulacja() {
     int max = 20;
     bool oddczytaj = true;
     while (run) {
-        std::cout << "Iteracja: " << i << "\n";
+   //     std::cout << "Iteracja: " << i << "\n";
 
        
         
@@ -32,7 +32,7 @@ void App::symulacja() {
             max+= data.size();
             oddczytaj = false;
             wypiszDane();
-            cout << "XDXDXD\n";
+           
         }
         else {
             BuforDanych* nowaBaza = new BuforDanych();
@@ -51,7 +51,7 @@ void App::symulacja() {
             }
             double wynikCalcAll = arx->calcAll(data);
             nowaBaza->setY(wynikCalcAll);
-            cout << wynikCalcAll << " ddd\n";
+         //   cout << wynikCalcAll << " ddd\n";
         }
         
 

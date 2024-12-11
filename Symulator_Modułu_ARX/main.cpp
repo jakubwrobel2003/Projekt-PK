@@ -9,7 +9,8 @@
 int main() {
     App aplikacja;
     ARX arx;
-
+    Sygnal syg;
+    aplikacja.setSyg(&syg);
     aplikacja.setARX(&arx);
 
     //gluwna petla
