@@ -54,7 +54,7 @@ void BuforDanych::setB(const string& data1) {
             b.push_back(std::stod(token)); 
         }
         catch (const std::invalid_argument&) {
-            cerr << "Invalid input: " << token << std::endl;
+            cerr << "B³¹d " << token << std::endl;
         }
         data.erase(0, pos + 1); 
     }
@@ -66,36 +66,41 @@ void BuforDanych::setB(const string& data1) {
         }
     }
     catch (const std::invalid_argument&) {
-      cerr << "Invalid input: " << data << std::endl;
+      cerr << "B³¹d " << data << std::endl;
     }
 }
 void BuforDanych::setA(const string& data1) {
     if (data1.empty()) {
-        return;
+        return;//Sprawdzamy czy jest pusty 
     }
 
-    string data(data1);
+    string data(data1);//kopiujemy dane
 
-    size_t pos = 0;
+    size_t pos = 0;//pozycja separatora
     while ((pos = data.find(";")) != string::npos) {
+    //pêtla dopuki nie znadziemy wsztkich ";"
         string token = data.substr(0, pos);
+        //wyciagamy fragment do ; np 2.3
         try {
-            a.push_back(std::stod(token));
+            a.push_back(std::stod(token));//zamiana stringa na doubla
         }
         catch (const std::invalid_argument&) {
-            cerr << "Invalid input: " << token << std::endl;
+            //zwramy blad gdy fragmet nie jest liczba
+            cerr << "B³¹d " << token << std::endl;
         }
-        data.erase(0, pos + 1);
+        data.erase(0, pos + 1);//usuwamy fragment waz z searaorem
     }
 
 
     try {
         if (!data.empty()) {
+         // ostatni liczba jest bez ; to tudaj dodamy do a i 'wy¿ucamy wyjatek
+         // gdy nie jest liczba'
             a.push_back(std::stod(data));
         }
     }
     catch (const std::invalid_argument&) {
-        cerr << "Invalid input: " << data << std::endl;
+        cerr << "B³¹d " << data << std::endl;
     }
 }
 
@@ -115,14 +120,14 @@ int BuforDanych::getI()const {
 }
 double BuforDanych::getA(int e) {
     if (e < 0 || e >= a.size()) {
-        throw std::out_of_range("Indeks poza zakresem wektora a");
+        throw std::out_of_range("Dane poza zakresem wektora a");
     }
     return a[e];
 }
 
 double BuforDanych::getb(int e) {
     if (e < 0 || e >= b.size()) {
-        throw std::out_of_range("Indeks poza zakresem wektora b");
+        throw std::out_of_range("Dane poza zakresem wektora b");
     }
     return b[e];
 }

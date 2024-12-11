@@ -7,7 +7,7 @@ double Sygnal::unit(double A) {
 	//sygnal jednostkowa
 	return A;
 }
-double  Sygnal::sinusoidal(double A,int i, int t = 60) {
+double  Sygnal::sinusoidal(double A,int i, int t ) {
 	double wynik = A * sin((i % t / t) * 2 * 3.14);
 	return wynik;
 }
