@@ -8,11 +8,12 @@ private:
 	double Period;
 
 
-	Sygnal();
-	double unit();
-	double sinusoidal();
-	double rectangular();
+	
+	double unit(double A);
+	double sinusoidal(double A,int i,int t=60);
+	double rectangular(double A,double p, int t, int i);
 public:
 	double generateSignal();
+	Sygnal();
 };
 
