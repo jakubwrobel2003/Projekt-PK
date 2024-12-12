@@ -14,17 +14,20 @@ private:
 	double rectangular(double A,double p, int i, int t = 60);
 	
 public:
-	double setA(double data) {
+	void setA(double data) {
 		A = data;
 	}
-	double setp(double data) {
+	void setp(double data) {
 		p = data;
 	}
-	double sett(int data) {
+	void sett(int data) {
 		t = data;
 	}
-	double seti(int data) {
+	void seti(int data) {
 		i = data;
+	}
+	double axx() {
+		return A;
 	}
 	double generateSignal(int liczba=0);
 	Sygnal();

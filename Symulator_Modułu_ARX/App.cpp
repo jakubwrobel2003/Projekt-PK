@@ -18,12 +18,12 @@ void App::clikrun() {
 void App::symulacja() {
     double i = 0;
     run = true;
-    int max = 20;
+    int max = 100;
     bool oddczytaj = true;
     while (run) {
    //     std::cout << "Iteracja: " << i << "\n";
 
-       
+       // cout << i << max;
         
         if (oddczytaj) {
              // Czyszczenie wektora przed wczytaniem danych
@@ -31,26 +31,36 @@ void App::symulacja() {
             i = data.size();
             max+= data.size();
             oddczytaj = false;
-            wypiszDane();
-           
+           // wypiszDane();
+            
         }
         else {
+            
             BuforDanych* nowaBaza = new BuforDanych();
-            const std::string input = "2.34;2.60;3.14;5.0";
-            nowaBaza->setB(input);
-            nowaBaza->setA(input);
-
+            //const std::string input = "2.34;2.60;3.14;5.0";
+            nowaBaza->setB("0.4;-0.2");
+            nowaBaza->setA("0.3;0,1");
+            
             nowaBaza->setZaklucenie(arx->generateDisturbance());
+            if (data.size() == 0) {
+                nowaBaza->setU(Pid->obliczSprzezenie(0.5,0));
+            }
+            else {
+               
+                if (i < 20) {
+                
+                    nowaBaza->setU(Pid->obliczSprzezenie(0.5, data.back()->getY()));
+                }if (i >=20) {
+                   
+                    nowaBaza->setU(Pid->obliczSprzezenie(1, data.back()->getY()));
+                }
+            }
+            
 
             data.push_back(nowaBaza);
-            if (i <= 20) {
-                nowaBaza->setU(0.5);
-            }if (i > 20) {
-
-            nowaBaza->setU(1.0);
-            }
             double wynikCalcAll = arx->calcAll(data);
-            nowaBaza->setY(wynikCalcAll);
+            data.back()->setY(wynikCalcAll);
+           
          //   cout << wynikCalcAll << " ddd\n";
         }
         
@@ -66,6 +76,7 @@ void App::symulacja() {
 }
 
 void App::wypiszDane() {
+
     std::cout << "Rozmiar danych: " << data.size() << "\n";
     std::cout << "ID\tZaklucenie\tB\tA\tY\tU\n";
     std::cout << "------------------------\n";

@@ -5,7 +5,7 @@ using namespace std;
 double ARX::generateDisturbance() {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(0.0, 1.0);
+    std::uniform_real_distribution<> dis(-0.01, 0.01);
     return dis(gen);
 }
 
@@ -47,6 +47,8 @@ double ARX::calaA(vector<BuforDanych*> data) {
 }
 
 double ARX::calcAll(std::vector<BuforDanych*> data) {
-   
+    if (data.size() == 1) {
+        return 0;
+   }
     return calcb(data) - calaA(data) + data.back()->getZaklucenie();
 }

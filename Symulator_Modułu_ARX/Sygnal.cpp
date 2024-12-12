@@ -4,7 +4,7 @@ Sygnal::Sygnal() {
 	//konstruktor
 }
 double Sygnal::unit(double A) {
-	//sygnal jednostkowa
+	
 	return A;
 }
 double  Sygnal::sinusoidal(double A,int i, int t ) {

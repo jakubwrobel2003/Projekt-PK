@@ -9,6 +9,7 @@
 #include <vector>
 #include "BuforDanych.h"
 #include "Sygnal.h"
+#include "PID.h"
 using namespace std;
 class ARX;
 
@@ -18,12 +19,14 @@ private:
     std::vector<BuforDanych*> data;//Relacja agregacji
     ARX* arx;// Relacja zale¿noœci
     Sygnal* syg;//Relacja zale¿noœci
+    PID* Pid;
 public:
     void clikrun(); //start stop
     void symulacja(); //g³ówna fukcja programu
     void wypiszDane(); //wykonuje wypisz na wstkich obiektach bufordanyh po kolei od 1 do n na ekran piersza wersja
     void setARX(ARX* A) { this->arx = A; }
     void setSyg(Sygnal* S) { this->syg = S; }
+    void setPID(PID* p) { this->Pid = p; }
 
     void zapisBazydanychdopliku();
     App();

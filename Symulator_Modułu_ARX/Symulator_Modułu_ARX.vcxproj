@@ -133,7 +133,6 @@
     <ClCompile Include="BuforDanych.cpp" />
     <ClCompile Include="PID.cpp" />
     <ClCompile Include="ARX.cpp" />
-    <ClCompile Include="Sprzezenie.cpp" />
     <ClCompile Include="Sygnal.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +140,6 @@
     <ClInclude Include="BuforDanych.h" />
     <ClInclude Include="PID.h" />
     <ClInclude Include="ARX.h" />
-    <ClInclude Include="Sprzezenie.h" />
     <ClInclude Include="Sygnal.h" />
   </ItemGroup>
   <ItemGroup>

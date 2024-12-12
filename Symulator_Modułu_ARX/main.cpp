@@ -10,9 +10,10 @@ int main() {
     App aplikacja;
     ARX arx;
     Sygnal syg;
+    PID pid(1, 0.05, 0.01 );
     aplikacja.setSyg(&syg);
     aplikacja.setARX(&arx);
-
+    aplikacja.setPID(&pid);
     //gluwna petla
     aplikacja.symulacja();
 
