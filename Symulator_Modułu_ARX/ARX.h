@@ -5,6 +5,11 @@
 using namespace std;
 class ARX {
 public:
+    /*std::vector<double> saveU;
+    std::vector<double> saveY;
+    std::vector<double> saveA;
+    std::vector<double> saveB;*/
+
     double generateDisturbance();
     //double policz(std::vector<BuforDanych*> data);
     double calaA(std::vector<BuforDanych*> data);

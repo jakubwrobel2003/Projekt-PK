@@ -1,5 +1,6 @@
 #include "ARX.h"
 #include "App.h"
+#include "BuforDanych.h"
 using namespace std;
 
 double ARX::generateDisturbance() {
@@ -9,46 +10,66 @@ double ARX::generateDisturbance() {
     return dis(gen);
 }
 
-double ARX::calcb(vector<BuforDanych*> data) {
+double ARX::calcb(std::vector<BuforDanych*> data) {
     if (data.empty()) {
-        throw std::invalid_argument("Dane s¹ puste! Nie mozna wykonac obliczen.");
+        throw std::invalid_argument("Dane s¹ puste! Nie mo¿na wykonaæ obliczeñ.");
     }
-    double sum = 0;
-    int m_i = data.back()->getI();
-    for (int i = 0; i <= m_i; i++) {
-        if (data.size() <= i) {
-            sum += 0;
-        }
-        else {
-           // cout << "TEST calcb\n" << data[data.size() - 1 - i]->getU() << data.back()->getb(i) << "\n";
-            sum -= data[data.size() - 1 - i]->getU() * data.back()->getb(i);
+
+    double sum = 0.0;
+    int n_b = data.back()->getvectorB().size(); // Liczba wspó³czynników b
+    int k = data.back()->k; // OpóŸnienie wejœcia
+
+    for (int i = 0; i < n_b; ++i) {
+        int idx = data.size() - i - k-1;
+        if (idx >= 0 && idx < data.size()) { // Upewnij siê, ¿e indeks jest w granicach
+            sum += data[idx]->getU() * data.back()->getb(i);
+           // std::cout << "Bcalc " << data[idx]->getU() << " U " << data.back()->getb(i) << " A " << sum << " sum\n";
         }
     }
+
     return sum;
 }
 
-double ARX::calaA(vector<BuforDanych*> data) {
+double ARX::calaA(std::vector<BuforDanych*> data) {
     if (data.empty()) {
-        throw std::invalid_argument("Dane sa puste! Nie mozna wykonaæ obliczen.");
+        throw std::invalid_argument("Dane s¹ puste! Nie mo¿na wykonaæ obliczeñ.");
     }
-    double sum = 0;
-    int m_i = data.back()->getI();
-   // cout << "TEST calca\n" << data.size();
-    for (int i = 1; i <= m_i; i++) {
-        if (data.size() <= i) {
-            sum += 0;
+
+    double sum = 0.0;
+    //int n_a = data.back()->getvectorA().size(); // Liczba wspó³czynników a
+    //std::cout << "\nVERA " << n_a << "\n";
+
+    //for (int j = 0; j < n_a; ++j) {
+    //    int idx = data.size() - 1 - j; // Indeks danych wyjœciowych
+    //    if (idx >= 0 && idx < data.size()) { // Sprawdzenie poprawnoœci indeksu
+    //        sum += data[idx]->getY() * data.back()->getA(j);
+    //        std::cout << "Acalc idx: " << idx << " Y: " << data[idx]->getY() << " A: " << data.back()->getA(j) << " Sum: " << sum << "\n";
+    //    }
+    //    else {
+    //        std::cout << "Pominiêto iteracjê: j = " << j << ", idx = " << idx << "\n";
+    //    }
+    //}
+    int n_b = data.back()->getvectorA().size(); // Liczba wspó³czynników b
+    int k = data.back()->k; // OpóŸnienie wejœcia
+
+    for (int i = 0; i < n_b; ++i) {
+        int idx = data.size() - i  - 1;
+        
+        if (idx -i>= 0 && idx < data.size()) { // Upewnij siê, ¿e indeks jest w granicach
+            sum += data[idx - i]->getY()* data.back()->getA(i);
+           // std::cout << "Acalc " << data[idx-i]->getY() << " Y " << data.back()->getA(i) << " A " << sum << " sum\n";
         }
         else {
-         //   cout << data[data.size() - 1 - i]->getY() << data.back()->getb(i);
-            sum -= data[data.size() - 1 - i]->getY() * data.back()->getb(i);
+            sum += 0.0;
         }
     }
     return sum;
 }
 
 double ARX::calcAll(std::vector<BuforDanych*> data) {
-    if (data.size() == 1) {
+    if (data.size() == 0) {
         return 0;
    }
+	//cout << "\na-b" << calcb(data) - calaA(data) + data.back()->getZaklucenie() << "pp\n";
     return calcb(data) - calaA(data) + data.back()->getZaklucenie();
 }

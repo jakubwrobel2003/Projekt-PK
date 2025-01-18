@@ -13,11 +13,12 @@ private:
     vector<double> b;
     vector<double>a;
     double ster;
-    double y;
+    double y=0;
     int i;
     double u;
-public:
     
+public:
+    int k=1;
     BuforDanych();//konstruktor jak tworzy sie pierwszy to nullptr
     //setery
     void setZaklucenie(double data);

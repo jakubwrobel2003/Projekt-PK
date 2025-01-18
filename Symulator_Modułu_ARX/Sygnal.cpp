@@ -1,5 +1,7 @@
 #include "Sygnal.h"
 #include <math.h>
+#include <iostream>
+
 Sygnal::Sygnal() {
 	//konstruktor
 }
@@ -18,16 +20,17 @@ double Sygnal::rectangular(double A, double p, int i, int t) {
 	return 0;
 }
 double  Sygnal::generateSignal(int liczba) {
+	double g;
 	if (liczba == 0) {
-		unit(A);
+		g = unit(A);
 
 	}
-	if (liczba==1) {
-		sinusoidal(A, i, t);
+	else if (liczba == 1) {
+		g = sinusoidal(A, i, t);
 	}
 	else {
-		rectangular(A, p, t, i);
+		g = rectangular(A, p, i, t);
 	}
 	// generowanie sygnalu
-	return 0;
+	return g;
 }

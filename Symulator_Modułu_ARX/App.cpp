@@ -14,6 +14,52 @@ App::~App() {
 void App::clikrun() {
     run = !run;
 }
+double App::arxsym() {
+   
+    double wynikCalcAll = arx->calcAll(data);
+ 
+
+    //data.back()->setY(wynikCalcAll);
+    return wynikCalcAll;
+}
+//////////////////////////////////////////////////////////////////
+//
+//
+/////////////////////////////////////////////
+void App::symulacjaStep() {
+    //std::cout << "Czy symulacja dzia³a? run = " << run << "\n";
+
+    if (!run) {
+        return;  //zatrzymana
+    }
+    //std::cout << "Czy weqesymulacja dzia³a? run = " << run << "\n";
+
+   // wypiszDane();
+    BuforDanych* nowaBaza = new BuforDanych();
+    syg->setA(amplituda);
+    
+    
+    
+   
+    //double u= Pid->obliczSprzezenie(syg->generateSignal(sygnal), oldY);
+    nowaBaza->setB(b);
+    nowaBaza->setA(a);
+    nowaBaza->setZaklucenie(0);
+    nowaBaza->k = 0;
+    nowaBaza->setY(oldY);
+    nowaBaza->setU(Pid->obliczSprzezenie(syg->generateSignal(sygnal), oldY));
+    data.push_back(nowaBaza);
+    if (arx) {
+        double wynikCalcAll = arx->calcAll(data);
+        data.back()->setY(wynikCalcAll);
+        oldY = wynikCalcAll;
+    }
+   // wypiszDane();
+    // Debug: Informacje o dodanych danych
+    //qDebug() << "Dodano punkt do symulacji: ID =" << data.back()->getI()
+      //  << ", Y =" << data.back()->getY() << ", U =" << data.back()->getU();
+}
+
 
 void App::symulacja() {
     double i = 0;
@@ -21,21 +67,16 @@ void App::symulacja() {
     int max = 100;
     bool oddczytaj = true;
     while (run) {
-   //     std::cout << "Iteracja: " << i << "\n";
 
-       // cout << i << max;
-        
         if (oddczytaj) {
              // Czyszczenie wektora przed wczytaniem danych
-            odczytajDaneZPliku();
+           // odczytajDaneZPliku();
             i = data.size();
             max+= data.size();
             oddczytaj = false;
            // wypiszDane();
-            
         }
         else {
-            
             BuforDanych* nowaBaza = new BuforDanych();
             //const std::string input = "2.34;2.60;3.14;5.0";
             nowaBaza->setB("0.4;-0.2");
@@ -55,8 +96,6 @@ void App::symulacja() {
                     nowaBaza->setU(Pid->obliczSprzezenie(1, data.back()->getY()));
                 }
             }
-            
-
             data.push_back(nowaBaza);
             double wynikCalcAll = arx->calcAll(data);
             data.back()->setY(wynikCalcAll);
@@ -64,7 +103,6 @@ void App::symulacja() {
          //   cout << wynikCalcAll << " ddd\n";
         }
         
-
         i++;
 
         if (i >= max) {
@@ -92,13 +130,13 @@ void App::wypiszDane() {
 }
 
 void App::zapisBazydanychdopliku() {
-    ofstream file("example.txt", std::ios::out | std::ios::trunc);
+    ofstream file("example.txt");
     if (file.is_open()) {
         for (const auto& elem : data) {
-           // cout << elem->getID() << "\n";
+          
             if (elem) {
                 file << elem->getID() << "\t" << elem->getZaklucenie() << "\t";
-                //file << elem->getb(0) << elem->getb(1);
+               
                 for (const auto data : elem->getvectorB()) {
                     file << data << ";";
                 }

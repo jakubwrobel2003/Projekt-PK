@@ -1,11 +1,12 @@
 #pragma once
+#include <iostream>
 class Sygnal
 {
 private:
 	double A;
 	double p;
 	int t;
-	double i;
+	int i;
 
 
 	
@@ -16,6 +17,7 @@ private:
 public:
 	void setA(double data) {
 		A = data;
+	
 	}
 	void setp(double data) {
 		p = data;

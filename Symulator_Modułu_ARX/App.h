@@ -16,18 +16,32 @@ class ARX;
 class App {
 private:
     bool run = false; // start stop
-    std::vector<BuforDanych*> data;//Relacja agregacji
     ARX* arx;// Relacja zale¿noœci
-    Sygnal* syg;//Relacja zale¿noœci
     PID* Pid;
 public:
+    Sygnal* syg;//Relacja zale¿noœci
+
+    std::vector<BuforDanych*> data;//Relacja agregacji
+    double oldY = 0;
+    std::string a;
+    std::string b;
+    double u;
+    double p;
+    double t;
+    double i;
+    double amplituda;
+    int sygnal=0;
+
     void clikrun(); //start stop
     void symulacja(); //g³ówna fukcja programu
+    //
+    void symulacjaStep();
+    //
     void wypiszDane(); //wykonuje wypisz na wstkich obiektach bufordanyh po kolei od 1 do n na ekran piersza wersja
     void setARX(ARX* A) { this->arx = A; }
     void setSyg(Sygnal* S) { this->syg = S; }
     void setPID(PID* p) { this->Pid = p; }
-
+    double arxsym();
     void zapisBazydanychdopliku();
     App();
     ~App();
@@ -44,7 +58,7 @@ public:
 
         // Przetwarzanie kolejnych wierszy danych
         while (std::getline(file, linia)) {
-            std::istringstream iss(linia);
+            std::istringstream iss(linia);//obiekt strumienia wejœciowego
 
             int id;
             double zaklucenie;

@@ -6,21 +6,22 @@ private:
     double wzmocnienieProporcjonalne; // Wzmocnienie proporcjonalne (Kp)
     double wzmocnienieCalkujace;      // Wzmocnienie calkujace (Ki)
     double wzmocnienieRowniczkujace;  // Wzmocnienie ró¿niczkujace (Kd)
-
-    double calka;            // Suma ca³kowania
-   // Poprzedni uchyb dla rozniczki
-    bool resetujCalke;       // Flaga resetu calkowania
+    double Ti = 0;
+    double odchylenieLiniowe;         // Zamiast ca³ki, linijne odejmowanie lub dodawanie
+    bool resetujOdchylenie;           // Flaga resetu odchylenia
+    double poprzedniUchyb = 0;
+    double poprzednia = 0;      // Flaga resetu calkowania
 
 public:
-    double poprzedniUchyb = 0.5;
+   
     PID(double kp, double ki, double kd);
-    void resetPamieci(); // Reset pamieci regulatora
+    void resetPamieci(); 
 
     void ustawWzmocnienieProporcjonalne(double wartosc);
     void ustawWzmocnienieCalkujace(double wartosc);
     void ustawWzmocnienieRowniczkujace(double wartosc);
 
-    double oblicz(double wartoscZadana, double wartoscMierzona); // Oblicz wyjscie regulatora
+    double oblicz(double uchyb); // Oblicz wyjscie regulatora
     double obliczSprzezenie(double wartoscZadana, double wartoscMierzona);
 
     // Funkcja sumatora
